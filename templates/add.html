@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card shadow-sm border-0">
+      <!-- Header -->
+      <div class="card-header bg-success text-white py-3">
+        <h4 class="mb-0"><i class="fa fa-user-plus me-2"></i> Add Student</h4>
+      </div>
+
+      <div class="card-body p-4">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% for
+        category, message in messages %}
+        <div
+          class="alert alert-{{ category }} alert-dismissible fade show"
+          role="alert"
+        >
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+        </div>
+        {% endfor %} {% endwith %}
+
+        <form action="{{ url_for('add_student') }}" method="POST">
+          <!-- Name -->
+          <div class="mb-3">
+            <label for="name" class="form-label fw-semibold">Full Name</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-control"
+                placeholder="Enter full name"
+                required
+                autofocus
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label fw-semibold"
+              >Email Address</label
+            >
+            <div class="input-group">
+              <span class="input-group-text"
+                ><i class="fa fa-envelope"></i
+              ></span>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                placeholder="name@example.com"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Course -->
+          <div class="mb-4">
+            <label for="course" class="form-label fw-semibold">Course</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-book"></i></span>
+              <input
+                type="text"
+                id="course"
+                name="course"
+                class="form-control"
+                placeholder="Enter course name"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex gap-2">
+            <a
+              href="{{ url_for('index') }}"
+              class="btn btn-outline-secondary w-50"
+            >
+              <i class="fa fa-arrow-left me-1"></i> Cancel
+            </a>
+            <button type="submit" class="btn btn-success w-50">
+              <i class="fa fa-save me-1"></i> Save Student
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
